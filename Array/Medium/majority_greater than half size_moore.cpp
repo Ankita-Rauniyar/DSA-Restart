@@ -30,13 +30,14 @@ int better(vector<int> &a, int n){
 - "cancellation" - diff ele cancel each other
 - majority ele has more votes(extra copies) -> remain after cancellation
 
-initially count = 0, candidate ele
-same ele -> count++
+initially,  count=0
 
-different ele -> count--
-
-if count == 0 (till now all ele cancel)
+for every ele
+if count == 0 (till now all ele cancel, no majority)
    new candidate = current -> count=1
+
+same ele -> count++
+different ele -> count--
 
 - verify candidate is majority (>n/2) (2nd pass)
 
@@ -45,18 +46,24 @@ if count == 0 (till now all ele cancel)
 */
 
 int optimal(vectro<int>&a, int n){
-    int count =0;
-    int ele;
-    for(int i=0; i<n; i++){
-        if(count == 0){
-            count =1;
-            ele = a[i]; //current candidate
+    
+    int count = 0; //initial
+    int ele;     //candidate
+
+    for(int i = 0; i < n; i++){
+
+        if(count == 0){ //no majority till now
+            ele = a[i]; //new candidate
+            count = 1;
         }
-        else if(a[i]==el){
+        else if(a[i] == ele){ //same
             count++;
         }
-        else count--;
+        else{
+            count--; //diff
+        }
     }
+    
 
     //check ele majority or not
     int count_ele =0;
