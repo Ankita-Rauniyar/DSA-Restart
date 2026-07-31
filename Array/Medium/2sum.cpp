@@ -7,7 +7,8 @@ op: [1,3] -> 6+8=14
  */
 
  /* brute:  n^2
- -for every ele, check sum with other ele , check if match ans or not  */
+ -for every ele, check sum with other ele , check if match ans or not 
+  */
 
  vector<int>brute(vector<int> &a, int n, int target){
     for(int i=0; i<n; i++){
@@ -27,14 +28,14 @@ op: [1,3] -> 6+8=14
   */
 
   vector<int>better(vector<int>&a, int n, int target){
-    unordered_map<int, int> mpp;
+    unordered_map<int, int> mpp; //(ele->idx)
     for(int i=0; i<n; i++){
         int num = a[i];
         int required = target - num;
         if(mpp.find(required) != mpp.end()){ // present
-            return {mpp[required], i};
+            return {mpp[required], i}; //idxes
         }
-        mpp[num] = i; //if not found
+        mpp[num] = i; //if not found , store
     }
     return {-1,-1};
   }
