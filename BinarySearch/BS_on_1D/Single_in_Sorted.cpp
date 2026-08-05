@@ -27,8 +27,8 @@ op: 4
  }
 
  /* better: binary serach
- same ele idx (even, odd) -> ans on right half (eliminate left)
- same ele idx (odd, even) -> ans on left half (eliminate right part)
+ left pair (even, odd) -> ans on right half (eliminate left)
+ right pair (odd, even) -> ans on left half (eliminate right part)
  */
  int better(vector<int>&a, int n){
 
@@ -44,11 +44,11 @@ op: 4
             return a[mid];
         }
 
-        //left pair(odd, even) -> ans on right -> eliminate left
+        //left pair(even,odd) -> ans on right -> eliminate left
         if((mid%2==1 && a[mid] == a[mid-1]) || (mid%2==0 && a[mid]==a[mid+1])){
             low = mid+1;
         }
-        //right pair(even,odd) -> ans on left-> eliminate right
+        //right pair(odd,even) -> ans on left-> eliminate right
         else{
             high = mid-1;
             
